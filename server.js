@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { application } = require("express");
+const teamsController = require("./controllers/teams");
+const playersController = require("./controllers/player");
 
 // Initialize Express App
 const app = express();
@@ -25,8 +27,15 @@ db.on("error", (error) => console.log("MongoDB has an error" + error.message));
 app.use(cors()); 
 app.use(express.json()); // creates req.body
 app.use(morgan("dev"));
+// app.use("/teams, teamsController");
+// app.use("/players, playersController");
 
 // Mount Routes
+
+app.get("/", (req, res) => {
+    res.send("index route works");
+});
+
 app.get("/api", (req, res) => {
      res.jason({message: "Welcome to the React Sports Chat API"})
 });
