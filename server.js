@@ -5,7 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const { application } = require("express");
 const teamsController = require("./controllers/teams");
-const playersController = require("./controllers/player");
+const playerController = require("./controllers/player");
 
 // Initialize Express App
 const app = express();
@@ -31,10 +31,24 @@ app.use(morgan("dev"));
 // app.use("/players, playersController");
 
 // Mount Routes
-
 app.get("/", (req, res) => {
-    res.send("index route works");
+    res.send("Hello World");
 });
+
+//Index Route
+app.get("/teams", (req, res) => {
+    res.render("", {
+        allPlayers: player
+    });
+});
+
+// Show Route
+app.get("/players/:id", (req, res) => {
+    res.render("", 
+        {player:players[req.params.id]
+    });
+});
+
 
 app.get("/api", (req, res) => {
      res.jason({message: "Welcome to the React Sports Chat API"})
