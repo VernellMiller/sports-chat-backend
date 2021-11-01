@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const showSchema = new Schema({
+    image: { type: String },
     firstName: { type: String },
     lastName: { type: String },
     position: { type: String },
