@@ -1,10 +1,20 @@
 const express = require("express");
-const router = express.Router();
+const Router = express.Router();
+const Player = require("../models/player");
 
-// I want this to route to the player the is selected
-// the will come from an API
-router.get("/player", (req, res) => {
-    res.send("this is working");
+//Index Route
+Router.get("/player", async (req, res) => {
+    // res.jason(await Player.find({}));
+    // or
+    try {
+        const player = await Player.find({});
+        res.jason(player);
+        
+    } catch (error) {
+        res.status(400).jason(error);
+    }
 });
 
-module.exports = router;
+
+
+module.exports = Router;
