@@ -15,6 +15,8 @@ Router.get("/players", async (req, res) => {
     }
 });
 
+// New Routes
+
 // Delete Route
 Router.delete("/Players/:id", async (req,res) => {
     try {
@@ -46,5 +48,9 @@ Router.post("/players", async (req, res) => {
         res.status(400).json(error); 
     }
 });
+
+// Edit Route
+
+// Show Route
 
 module.exports = Router;
