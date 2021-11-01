@@ -25,6 +25,18 @@ Router.delete("/Players/:id", async (req,res) => {
 })
 
 //Update Route
+Router.put("/players/:id", async (req, res) => {
+    try {
+        res.json(await Players.findByIdAndUpdate(
+            req.params.id, 
+            req.body, 
+            {new: true})
+        );
+    } catch (error) {
+        res.status(400).json(error);
+    }
+})
+
 
 // Create Route
 Router.post("/players", async (req, res) => {
