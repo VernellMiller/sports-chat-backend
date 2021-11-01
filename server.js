@@ -5,7 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const { application } = require("express");
 const teamsController = require("./controllers/teams");
-const playerController = require("./controllers/player");
+const playersController = require("./controllers/players");
 
 // Initialize Express App
 const app = express();
@@ -23,33 +23,16 @@ db.on("disconnected", () => console.log("Disconnected to mongoDB"));
 db.on("error", (error) => console.log("MongoDB has an error" + error.message));
 
 //Mount Middleware
+
+
     // attaches a Access-Control-Allow-Origin header to the response
 app.use(cors()); 
 app.use(express.json()); // creates req.body
 app.use(morgan("dev"));
 // app.use("/teams, teamsController");
-// app.use("/players, playersController");
+app.use("/", playersController);
 
 // Mount Routes
-app.get("/", (req, res) => {
-    res.send("Hello World");
-});
-
-//Index Route
-app.get("/teams", (req, res) => {
-    res.render("", {
-        allPlayers: player
-    });
-});
-
-// Show Route
-app.get("/players/:id", (req, res) => {
-    res.render("", 
-        {player:players[req.params.id]
-    });
-});
-
-
 app.get("/api", (req, res) => {
      res.jason({message: "Welcome to the React Sports Chat API"})
 });
